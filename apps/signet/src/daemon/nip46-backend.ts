@@ -373,7 +373,7 @@ export class Nip46Backend {
                 // so validating it is sufficient authorization.
                 debug('[%s] connect with valid one-time token from %s', this.keyName, humanPubkey);
                 logger.info('Auto-approving connect via connection token', { key: this.keyName, from: humanPubkey });
-                const keyUserId = await grantPermissionsByTrustLevel(remotePubkey, this.keyName, 'reasonable', 'auto-approved via connection token');
+                const keyUserId = await grantPermissionsByTrustLevel(remotePubkey, this.keyName, 'full', 'auto-approved via connection token');
                 this.addAppSubscription(keyUserId, []);
                 return 'ack';
             }
@@ -391,7 +391,7 @@ export class Nip46Backend {
                 // Auto-approve admin secret connections too
                 debug('[%s] connect with valid admin secret from %s', this.keyName, humanPubkey);
                 logger.info('Auto-approving connect via admin secret', { key: this.keyName, from: humanPubkey });
-                const keyUserId = await grantPermissionsByTrustLevel(remotePubkey, this.keyName, 'reasonable', 'auto-approved via admin secret');
+                const keyUserId = await grantPermissionsByTrustLevel(remotePubkey, this.keyName, 'full', 'auto-approved via admin secret');
                 this.addAppSubscription(keyUserId, []);
                 return 'ack';
             }
